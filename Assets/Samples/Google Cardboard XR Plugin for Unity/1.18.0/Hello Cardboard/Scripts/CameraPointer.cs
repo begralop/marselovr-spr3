@@ -64,7 +64,7 @@ public class CameraPointer : MonoBehaviour
                 mira.transform.GetChild(0).GetComponent<Animator>().SetTrigger("peque");
             }
             // No GameObject detected in front of the camera.
-            _gazedAtObject?.SendMessage("OnPointerExit");
+            _gazedAtObject?.SendMessage("SalidaPuntero1");
             _gazedAtObject = null;
         }
 
