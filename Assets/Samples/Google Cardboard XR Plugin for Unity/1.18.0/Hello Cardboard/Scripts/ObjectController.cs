@@ -84,7 +84,7 @@ public class ObjectController : MonoBehaviour
     /// <summary>
     /// This method is called by the Main Camera when it starts gazing at this GameObject.
     /// </summary>
-    public void OnPointerEnter()
+    public void EntradaPuntero1()
     {
         SetMaterial(true);
     }
@@ -92,7 +92,7 @@ public class ObjectController : MonoBehaviour
     /// <summary>
     /// This method is called by the Main Camera when it stops gazing at this GameObject.
     /// </summary>
-    public void OnPointerExit()
+    public void SalidaPuntero1()
     {
         SetMaterial(false);
     }
