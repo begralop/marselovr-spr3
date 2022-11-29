@@ -15,10 +15,14 @@ public class SceneLogica : MonoBehaviour
     {
         SceneManager.LoadScene("HelloCardboard");
     }
-    
+
     public void video()
     {
         SceneManager.LoadScene("VideoScene");
+    }
+    public void menu()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void instrucciones()

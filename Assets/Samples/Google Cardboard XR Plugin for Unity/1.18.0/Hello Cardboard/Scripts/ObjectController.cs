@@ -18,6 +18,8 @@
 
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.Events;
 
 /// <summary>
 /// Controls target objects behaviour.
@@ -33,6 +35,9 @@ public class ObjectController : MonoBehaviour
     /// The material to use when this object is active (gazed at).
     /// </summary>
     public Material GazedAtMaterial;
+
+    public UnityEvent myEvent;
+
 
     // The objects are about 1 meter in radius, so the min/max target distance are
     // set so that the objects are always within the room (which is about 5 meters
@@ -52,13 +57,12 @@ public class ObjectController : MonoBehaviour
     {
         _startingPosition = transform.parent.localPosition;
         _myRenderer = GetComponent<Renderer>();
-        SetMaterial(false);
     }
 
     /// <summary>
     /// Teleports this instance randomly when triggered by a pointer click.
     /// </summary>
-    public void TeleportRandomly()
+    /*public void TeleportRandomly()
     {
         // Picks a random sibling, activates it and deactivates itself.
         int sibIdx = transform.GetSiblingIndex();
@@ -79,14 +83,14 @@ public class ObjectController : MonoBehaviour
         randomSib.SetActive(true);
         gameObject.SetActive(false);
         SetMaterial(false);
-    }
+    }*/
 
     /// <summary>
     /// This method is called by the Main Camera when it starts gazing at this GameObject.
     /// </summary>
     public void EntradaPuntero1()
     {
-        SetMaterial(true);
+        //SetMaterial(true);
     }
 
     /// <summary>
@@ -94,16 +98,16 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public void SalidaPuntero1()
     {
-        SetMaterial(false);
+        //SetMaterial(false);
     }
-
+    
     /// <summary>
     /// This method is called by the Main Camera when it is gazing at this GameObject and the screen
     /// is touched.
     /// </summary>
-    public void OnPointerClick()
+    public void OnPointerClick1()
     {
-        TeleportRandomly();
+        myEvent.Invoke();
     }
 
     /// <summary>
@@ -113,11 +117,11 @@ public class ObjectController : MonoBehaviour
     /// <param name="gazedAt">
     /// Value `true` if this object is being gazed at, `false` otherwise.
     /// </param>
-    private void SetMaterial(bool gazedAt)
+    /*private void SetMaterial(bool gazedAt)
     {
         if (InactiveMaterial != null && GazedAtMaterial != null)
         {
             _myRenderer.material = gazedAt ? GazedAtMaterial : InactiveMaterial;
         }
-    }
+    }*/
 }
