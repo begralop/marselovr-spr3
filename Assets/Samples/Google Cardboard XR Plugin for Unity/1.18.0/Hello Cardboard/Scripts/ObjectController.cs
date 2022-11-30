@@ -90,17 +90,20 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public void EntradaPuntero1()
     {
-        //SetMaterial(true);
-    }
 
-    /// <summary>
-    /// This method is called by the Main Camera when it stops gazing at this GameObject.
-    /// </summary>
+        if (this.GetComponent<Animator>() != null)
+        {
+            this.GetComponent<Animator>().SetTrigger("giro");
+        }
+    }
     public void SalidaPuntero1()
     {
-        //SetMaterial(false);
+        if (this.GetComponent<Animator>() != null)
+        {
+            this.GetComponent<Animator>().SetTrigger("nogiro");
+        }
     }
-    
+
     /// <summary>
     /// This method is called by the Main Camera when it is gazing at this GameObject and the screen
     /// is touched.
