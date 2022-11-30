@@ -26,37 +26,61 @@ public class CameraPointer : MonoBehaviour
 {
     private const float _maxDistance = 10;
     private GameObject _gazedAtObject = null;
+    private int layerMask;
+    public GameObject mira;
 
+
+    private void Start()
+    {
+        layerMask = 1 << LayerMask.NameToLayer("tocable");
+    }
     /// <summary>
     /// Update is called once per frame.
     /// </summary>
     public void Update()
     {
+
+        Debug.DrawLine(transform.position, transform.position + transform.forward * _maxDistance);
+        mira.transform.position = transform.position + transform.forward * _maxDistance;
         // Casts ray towards camera's forward direction, to detect if a GameObject is being gazed
         // at.
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance, layerMask))
         {
             // GameObject detected in front of the camera.
             if (_gazedAtObject != hit.transform.gameObject)
             {
                 // New GameObject.
-                _gazedAtObject?.SendMessage("OnPointerExit");
+                _gazedAtObject?.SendMessage("SalidaPuntero1");
                 _gazedAtObject = hit.transform.gameObject;
-                _gazedAtObject.SendMessage("OnPointerEnter");
+                _gazedAtObject.SendMessage("EntradaPuntero1");
+                mira.transform.GetChild(0).GetComponent<Animator>().SetTrigger("grande");
             }
         }
         else
         {
+            if (_gazedAtObject != null)
+            {
+                mira.transform.GetChild(0).GetComponent<Animator>().SetTrigger("peque");
+            }
             // No GameObject detected in front of the camera.
-            _gazedAtObject?.SendMessage("OnPointerExit");
+            _gazedAtObject?.SendMessage("SalidaPuntero1");
             _gazedAtObject = null;
         }
 
         // Checks for screen touches.
-        if (Google.XR.Cardboard.Api.IsTriggerPressed)
+        if (Input.GetButton("A"))
         {
-            _gazedAtObject?.SendMessage("OnPointerClick");
+            _gazedAtObject?.SendMessage("OnPointerClick1");
         }
+
+        /*if (Input.GetButtonDown("A"))
+        {
+            print("He pulsado A");
+        }
+        if (Input.GetButtonUp("A"))
+        {
+            print("He soltado A");
+        }*/
     }
 }
