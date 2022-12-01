@@ -71,7 +71,7 @@ public class CameraPointer : MonoBehaviour
         // Checks for screen touches.
         if (Input.GetButton("A"))
         {
-            _gazedAtObject?.SendMessage("OnPointerClick");
+            _gazedAtObject?.SendMessage("OnPointerClick1");
         }
 
         /*if (Input.GetButtonDown("A"))
