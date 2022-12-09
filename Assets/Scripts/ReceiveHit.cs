@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Experimental.GlobalIllumination;
 
 
 public class ReceiveHit : MonoBehaviour
 {
+
     public UnityEvent myEvent;
     public void EntradaPuntero1()
     {
