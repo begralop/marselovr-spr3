@@ -22,6 +22,7 @@ namespace Valve.VR.InteractionSystem
 		};
 
 		//Public variables
+		public Transform tpint;
 		public TeleportPointType teleportType = TeleportPointType.MoveToLocation;
 		public string title;
 		public string switchToScene;
@@ -225,6 +226,9 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( !string.IsNullOrEmpty( switchToScene ) )
 			{
+				player.transform.position = tpint.position;
+				player.transform.rotation = tpint.rotation;
+
 				UnityEngine.SceneManagement.SceneManager.LoadScene(switchToScene);
 				Debug.Log("<b>[SteamVR Interaction]</b> TeleportPoint: Hook up your level loading logic to switch to new scene: " + switchToScene, this);
 			}
