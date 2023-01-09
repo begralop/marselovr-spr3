@@ -15,6 +15,7 @@ namespace Valve.VR.InteractionSystem
     public class HoverButton : MonoBehaviour
     {
         public GameObject tetsto;
+        public GameObject tetsto2;
 
         public Transform movingPart;
 
@@ -45,6 +46,7 @@ namespace Valve.VR.InteractionSystem
 
         private void Start()
         {
+
             if (movingPart == null && this.transform.childCount > 0)
                 movingPart = this.transform.GetChild(0);
 
@@ -103,10 +105,8 @@ namespace Valve.VR.InteractionSystem
             buttonUp = wasEngaged == true && isEngaged == false;
 
             if (buttonDown && onButtonDown != null)
-                tetsto = GameObject.Find("uno");
                 tetsto.SetActive(false);
-                tetsto = GameObject.Find("dos");
-                tetsto.SetActive(true);
+                tetsto2.SetActive(true);
             onButtonDown.Invoke(lastHoveredHand);
             if (buttonUp && onButtonUp != null)
                 onButtonUp.Invoke(lastHoveredHand);
