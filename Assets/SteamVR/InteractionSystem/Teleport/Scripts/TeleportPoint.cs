@@ -23,6 +23,11 @@ namespace Valve.VR.InteractionSystem
 
 		//Public variables
 		public Transform tpint;
+
+		// transform moto
+		public Transform motoTransform;
+		public Transform ADondeMoverMoto;
+
 		public TeleportPointType teleportType = TeleportPointType.MoveToLocation;
 		public string title;
 		public string switchToScene;
@@ -226,11 +231,24 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( !string.IsNullOrEmpty( switchToScene ) )
 			{
-				player.transform.position = tpint.position;
-				player.transform.rotation = tpint.rotation;
 
-				UnityEngine.SceneManagement.SceneManager.LoadScene(switchToScene);
-				Debug.Log("<b>[SteamVR Interaction]</b> TeleportPoint: Hook up your level loading logic to switch to new scene: " + switchToScene, this);
+                if (switchToScene.Equals("TpCoheteMoto"))
+                {
+					player.transform.position = tpint.position;
+					player.transform.rotation = tpint.rotation;
+
+					motoTransform.position = ADondeMoverMoto.position;
+					motoTransform.rotation = ADondeMoverMoto.rotation;
+				}
+                else
+                {
+					player.transform.position = tpint.position;
+					player.transform.rotation = tpint.rotation;
+
+					UnityEngine.SceneManagement.SceneManager.LoadScene(switchToScene);
+					Debug.Log("<b>[SteamVR Interaction]</b> TeleportPoint: Hook up your level loading logic to switch to new scene: " + switchToScene, this);
+				}
+
 			}
 			else
 			{
