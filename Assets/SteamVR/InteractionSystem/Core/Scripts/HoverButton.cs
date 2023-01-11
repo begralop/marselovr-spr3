@@ -7,6 +7,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using System;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -14,8 +15,9 @@ namespace Valve.VR.InteractionSystem
     [RequireComponent(typeof(Interactable))]
     public class HoverButton : MonoBehaviour
     {
-        public GameObject tetsto;
-        public GameObject tetsto2;
+        private GameObject tetsto;
+        private GameObject tetsto2;
+        private GameObject fh;
 
         public Transform movingPart;
 
@@ -53,6 +55,33 @@ namespace Valve.VR.InteractionSystem
             startPosition = movingPart.localPosition;
             endPosition = startPosition + localMoveDistance;
             handEnteredPosition = endPosition;
+
+            // buscar ui
+            GameObject temp = new GameObject();
+            UnityEngine.Object.DontDestroyOnLoad(temp);
+            UnityEngine.SceneManagement.Scene dontDestroyOnLoad = temp.scene;
+            UnityEngine.Object.DestroyImmediate(temp);
+            temp = null;
+
+            GameObject[] gameObjects = dontDestroyOnLoad.GetRootGameObjects();
+            foreach (GameObject go in gameObjects)
+            {
+                if (go.name == "Player")
+                {
+                    foreach(Transform t in go.transform.GetComponentsInChildren<Transform>())
+                    {
+                        if(t.name == "CanvasPlayer")
+                        {
+                            Debug.Log("uno");
+                            fh = t.gameObject;
+                            tetsto = t.GetChild(0).gameObject;
+                            tetsto2 = t.GetChild(1).gameObject;
+
+                        }
+
+                    }
+                }
+            }
         }
 
         private void HandHoverUpdate(Hand hand)
@@ -105,13 +134,16 @@ namespace Valve.VR.InteractionSystem
             buttonUp = wasEngaged == true && isEngaged == false;
 
             if (buttonDown && onButtonDown != null)
-                tetsto.SetActive(false);
-                tetsto2.SetActive(true);
             onButtonDown.Invoke(lastHoveredHand);
             if (buttonUp && onButtonUp != null)
                 onButtonUp.Invoke(lastHoveredHand);
             if (isEngaged && onButtonIsPressed != null)
+            {
+                tetsto.SetActive(false);
+                tetsto2.SetActive(true);
                 onButtonIsPressed.Invoke(lastHoveredHand);
+            }
+                
         }
     }
 }

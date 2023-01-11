@@ -9,34 +9,63 @@ namespace Valve.VR.InteractionSystem
 {
     public class LogicaUI : MonoBehaviour
     {
-        private Player player;
-        public GameObject tetsto2;
-        public GameObject tetsto3;
-        public GameObject tetsto4;
+        private GameObject player;
+        private GameObject tetsto2;
+        private GameObject tetsto3;
+        private GameObject tetsto4;
+        private GameObject fh;
         public GameObject abi;
 
 
         // Start is called before the first frame update
         void Start()
         {
+            // buscar ui
+            GameObject temp = new GameObject();
+            UnityEngine.Object.DontDestroyOnLoad(temp);
+            UnityEngine.SceneManagement.Scene dontDestroyOnLoad = temp.scene;
+            UnityEngine.Object.DestroyImmediate(temp);
+            temp = null;
 
-            tetsto2 = GameObject.Find("dos");
-            tetsto2.SetActive(false); 
-            tetsto3 = GameObject.Find("tres");
-            tetsto3.SetActive(true);
-            player = Player.instance;
-            abi = GameObject.Find("abi-down");
-            tetsto4 = GameObject.Find("cuatro");
+            GameObject[] gameObjects = dontDestroyOnLoad.GetRootGameObjects();
+            foreach (GameObject go in gameObjects)
+            {
+                if (go.name == "Player")
+                {
+                    player = go.gameObject;
+                    foreach (Transform t in go.transform.GetComponentsInChildren<Transform>())
+                    {
+                        if (t.name == "CanvasPlayer")
+                        {
+                            Debug.Log("uno");
+                            fh = t.gameObject;
+                            tetsto2 = t.GetChild(1).gameObject;
+                            tetsto3 = t.GetChild(2).gameObject;
+                            tetsto4 = t.GetChild(3).gameObject;
+
+                            tetsto2.SetActive(false);
+                            tetsto3.SetActive(true);
+
+                        }
+
+                    }
+                }
+            }
         }
 
         // Update is called once per frame
         void Update()
         {
-            if(Vector3.Distance(player.transform.position, abi.transform.position) < 2)
+            
+            if(tetsto3 != null && tetsto4 != null && player != null)
             {
-                tetsto3.SetActive(false);
-                tetsto4.SetActive(true);
+                if (Vector3.Distance(player.transform.position, abi.transform.position) < 2)
+                {
+                    tetsto3.SetActive(false);
+                    tetsto4.SetActive(true);
+                }
             }
+           
         }
     }
 }
