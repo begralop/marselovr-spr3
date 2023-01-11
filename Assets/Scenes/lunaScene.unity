@@ -11412,6 +11412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abi: {fileID: 2052292769}
+  cohete: {fileID: 1430126391}
+  tamuerto: 0
 --- !u!1 &1243565900
 GameObject:
   m_ObjectHideFlags: 0
@@ -13102,6 +13104,11 @@ Transform:
   m_Father: {fileID: 818788492}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1430126391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ed906d5487de5ca4489ab816839bf71c, type: 3}
+  m_PrefabInstance: {fileID: 1613775376}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1430524919
 GameObject:
   m_ObjectHideFlags: 0

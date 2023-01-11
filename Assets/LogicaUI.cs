@@ -13,13 +13,17 @@ namespace Valve.VR.InteractionSystem
         private GameObject tetsto2;
         private GameObject tetsto3;
         private GameObject tetsto4;
+        private GameObject tetsto5;
         private GameObject fh;
         public GameObject abi;
+        public GameObject cohete;
+        public bool tamuerto;
 
 
         // Start is called before the first frame update
         void Start()
         {
+            tamuerto = false;
             // buscar ui
             GameObject temp = new GameObject();
             UnityEngine.Object.DontDestroyOnLoad(temp);
@@ -42,6 +46,7 @@ namespace Valve.VR.InteractionSystem
                             tetsto2 = t.GetChild(1).gameObject;
                             tetsto3 = t.GetChild(2).gameObject;
                             tetsto4 = t.GetChild(3).gameObject;
+                            tetsto5 = t.GetChild(4).gameObject;
 
                             tetsto2.SetActive(false);
                             tetsto3.SetActive(true);
@@ -57,12 +62,22 @@ namespace Valve.VR.InteractionSystem
         void Update()
         {
             
-            if(tetsto3 != null && tetsto4 != null && player != null)
+            if(tetsto3 != null && tetsto4 != null && player != null && tetsto5 != null)
             {
-                if (Vector3.Distance(player.transform.position, abi.transform.position) < 2)
+                
+                    if (Vector3.Distance(player.transform.position, abi.transform.position) < 1)
+                    {
+                        tetsto3.SetActive(false);
+                        tetsto4.SetActive(true);
+                    }
+                    tamuerto = true;
+                
+                
+                
+                if (Vector3.Distance(player.transform.position, cohete.transform.position) < 20)
                 {
-                    tetsto3.SetActive(false);
-                    tetsto4.SetActive(true);
+                    tetsto4.SetActive(false);
+                    tetsto5.SetActive(true);
                 }
             }
            
