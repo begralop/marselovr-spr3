@@ -239,7 +239,10 @@ namespace Valve.VR.InteractionSystem
 
 					motoTransform.position = ADondeMoverMoto.position;
 					motoTransform.rotation = ADondeMoverMoto.rotation;
-				}
+				} else if (switchToScene.Equals("TpWin"))
+                {
+					//hacer metodo que active el canvas de la victoria
+                }
                 else
                 {
 					player.transform.position = tpint.position;

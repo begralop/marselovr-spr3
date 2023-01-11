@@ -8,6 +8,7 @@ public class CogerBidon : MonoBehaviour
     public bool isBidownCogido;
     public GameObject tpToMoto;
     public GameObject tpToCohete;
+    public GameObject tpWin;
 
     public void cogido()
     {
@@ -15,6 +16,7 @@ public class CogerBidon : MonoBehaviour
 
         tpToMoto.SetActive(true);
         tpToCohete.SetActive(true);
+        tpWin.SetActive(true);
     }
 
     public void NoCogido()
@@ -23,5 +25,6 @@ public class CogerBidon : MonoBehaviour
 
         tpToMoto.SetActive(false);
         tpToCohete.SetActive(false);
+        tpWin.SetActive(false);
     }
 }
