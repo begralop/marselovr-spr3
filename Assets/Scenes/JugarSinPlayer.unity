@@ -764,6 +764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tetsto: {fileID: 0}
+  tetsto2: {fileID: 0}
   movingPart: {fileID: 0}
   localMoveDistance: {x: 0, y: -0.1, z: 0}
   engageAtPercent: 0.95
@@ -888,7 +889,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306146090}
   m_LocalRotation: {x: 0.03549132, y: -0.6706172, z: 0.009782268, w: 0.74088955}
-  m_LocalPosition: {x: 14.7, y: -2.8, z: 47.1}
+  m_LocalPosition: {x: 14.7, y: -1.23, z: 47.1}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2029,6 +2030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tetsto: {fileID: 0}
+  tetsto2: {fileID: 0}
   movingPart: {fileID: 576021781}
   localMoveDistance: {x: 0, y: -0.015, z: 0}
   engageAtPercent: 0.95
