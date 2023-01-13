@@ -24,6 +24,23 @@ namespace Valve.VR.InteractionSystem
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+        public void menuWin()
+        {
+            Debug.Log("dengueeeeeeeee");
+            player.transform.position = new Vector3(0, 0, (float)-0.916);
+            player.transform.rotation = new Quaternion(0, 0, 0,0);
+            SceneManager.LoadScene("SampleScene");
+        }
+
+        public void WinExit()
+        {
+            Debug.Log("dengueeeeeeeee");
+            player.transform.position = new Vector3(0, 0, (float)-0.916);
+            player.transform.rotation = new Quaternion(0, 0, 0, 0);
+            UnityEditor.EditorApplication.isPlaying = false;
+
+        }
+
         public void jugar()
         {
             player.transform.position = tpint.position;

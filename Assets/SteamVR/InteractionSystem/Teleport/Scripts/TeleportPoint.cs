@@ -245,9 +245,11 @@ namespace Valve.VR.InteractionSystem
 					motoTransform.rotation = ADondeMoverMoto.rotation;
 				} else if (switchToScene.Equals("TpWin"))
                 {
-                    //hacer metodo que active el canvas de la victoria
-                    // buscar ui
-                    GameObject temp = new GameObject();
+
+					Debug.Log("PINGAAAAAAAAAAA");
+					//hacer metodo que active el canvas de la victoria
+					// buscar ui
+					GameObject temp = new GameObject();
                     UnityEngine.Object.DontDestroyOnLoad(temp);
                     UnityEngine.SceneManagement.Scene dontDestroyOnLoad = temp.scene;
                     UnityEngine.Object.DestroyImmediate(temp);
@@ -261,10 +263,12 @@ namespace Valve.VR.InteractionSystem
                             playerUI = go.gameObject;
                             foreach (Transform t in go.transform.GetComponentsInChildren<Transform>())
                             {
-                                if (t.name == "CanvasWinPlayer")
+								print(t.name);
+                                if (t.name == "FollowHead")
                                 {
                                     Debug.Log("dos");
-                                    canvas = t.gameObject;
+									canvas = t.GetChild(2).gameObject;
+									//canvas = t.gameObject;
                                     canvas.SetActive(true);
 
 
