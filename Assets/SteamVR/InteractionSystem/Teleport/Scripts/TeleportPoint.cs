@@ -28,7 +28,11 @@ namespace Valve.VR.InteractionSystem
 		public Transform motoTransform;
 		public Transform ADondeMoverMoto;
 
-		public TeleportPointType teleportType = TeleportPointType.MoveToLocation;
+        //buscar ui
+        private GameObject playerUI;
+        private GameObject canvas;
+
+        public TeleportPointType teleportType = TeleportPointType.MoveToLocation;
 		public string title;
 		public string switchToScene;
 		public Color titleVisibleColor;
@@ -241,7 +245,34 @@ namespace Valve.VR.InteractionSystem
 					motoTransform.rotation = ADondeMoverMoto.rotation;
 				} else if (switchToScene.Equals("TpWin"))
                 {
-					//hacer metodo que active el canvas de la victoria
+                    //hacer metodo que active el canvas de la victoria
+                    // buscar ui
+                    GameObject temp = new GameObject();
+                    UnityEngine.Object.DontDestroyOnLoad(temp);
+                    UnityEngine.SceneManagement.Scene dontDestroyOnLoad = temp.scene;
+                    UnityEngine.Object.DestroyImmediate(temp);
+                    temp = null;
+
+                    GameObject[] gameObjects = dontDestroyOnLoad.GetRootGameObjects();
+                    foreach (GameObject go in gameObjects)
+                    {
+                        if (go.name == "Player")
+                        {
+                            playerUI = go.gameObject;
+                            foreach (Transform t in go.transform.GetComponentsInChildren<Transform>())
+                            {
+                                if (t.name == "CanvasWinPlayer")
+                                {
+                                    Debug.Log("dos");
+                                    canvas = t.gameObject;
+                                    canvas.SetActive(true);
+
+
+                                }
+
+                            }
+                        }
+                    }
                 }
                 else
                 {
